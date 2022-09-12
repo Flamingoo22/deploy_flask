@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body style="font-family: cursive;">
+    <div class="container" style="background-color: rgb(5, 83, 100); color: aliceblue; padding: 40px 5%; gap:5px ;border-radius: 10px;">
+        <div class="navbar" >
+            <h1 class="navbar-brand text-light" style="font-size: 3em;">Hi {{session.username}}</h1>
+            <div>
+                <a href="/recipes/new" class="btn btn-outline-success btn-warning">Create</a>
+                <a href="/logout" class="btn btn-outline-success btn-warning">Log Out</a>
+            </div>
+        </div>
+        <table class="table table-striped" >
+            <p style="font-size: 2em;">All posted recipes:</p>
+            <thead>
+                <tr>
+                    <th class="text-light">Name</th>
+                    <th class="text-light">Under</th>
+                    <th class="text-light">Posted By</th>
+                    <th class="text-light">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                <tr>
+                    <td class="text-light">{{recipe.name}}</td>
+                    <td class="text-light">{{recipe.below30}}</td>
+                    <td class="text-light">{{recipe.owner.first_name}}</td>
+                    <td class="text-light">
+                    {% if session['uuid'] == recipe.owner.id %}
+                    <a href="/recipes/edit/{{recipe.id}}" class="btn btn-primary btn-sm">Edit</a>
+                    {% endif %}
+                    <a href="/recipes/{{recipe.id}}" class="btn btn-primary btn-sm">View</a>
+                    {% if session['uuid'] == recipe.owner.id %}
+                    <a href="/recipes/delete/{{recipe.id}}" class="btn btn-primary btn-sm">Delete</a></td>
+                    {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

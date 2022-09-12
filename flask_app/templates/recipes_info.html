@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body style="padding:0 30%; font-family: cursive;">
+    <div style="background-color: rgb(5, 83, 100); color: aliceblue; padding: 40px 5%; gap:5px ;border-radius: 10px;">
+        <div class="navbar">
+            <h1 class="navbar-brand text-light" style="font-size:2em">Welcome {{session['username']}}</h1>
+            <div>
+                <a href="/recipes" class="btn btn-outline-success btn-warning">Back to Recipes</a>
+                <a href="/logout" class="btn btn-outline-success btn-warning">Logout</a>
+            </div>
+        </div>
+
+        
+        <div>
+            <div>
+                <p>{{recipe.name}}</p>
+                <p>Posted by: {{recipe.owner.first_name}}</p>
+            </div>
+            <div>
+                <p>
+                    Description: {{recipe.description}}
+                </p>
+                <p>
+                    Under 30 Minutes: {{recipe.below30}}
+                </p>
+                <p>
+                    Instructions: {{recipe.instruction}}
+                </p>
+                <p>
+                    Date Made: {{recipe.cooked_date}}
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
